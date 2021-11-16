@@ -1,16 +1,7 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
-const Title = props => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
-
-Title.propTypes = {
-    
-};
+function Title() {
+    return ( 
+        <h1>CRUD MASCOTAS</h1>
+     );
+}
 
 export default Title;
