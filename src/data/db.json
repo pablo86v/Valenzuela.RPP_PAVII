@@ -14,6 +14,21 @@
       "id": 1,
       "nombre": "Coco",
       "tipo": "Perro"
+    },
+    {
+      "id": 2,
+      "nombre": "Newton",
+      "tipo": "Gato"
+    },
+    {
+      "id": 3,
+      "nombre": "Puky",
+      "tipo": "Perro"
+    },
+    {
+      "id": 4,
+      "nombre": "Sombra",
+      "tipo": "Gato"
     }
   ]
 }

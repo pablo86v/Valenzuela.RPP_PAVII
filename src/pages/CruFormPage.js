@@ -8,7 +8,7 @@ const URL = "http://localhost:3100";
 function CruFormPage() {
     const params = useParams();
     const [tiposMascota, setTiposMascota] = useState([]);
-    const [mascotaModificada, setMascotaModificada] = useState(null);
+    const [mascotaModificada, setMascotaModificada] = useState({});
 
     const getMascota = async (id) => {
         const { data } = await axios.get(`${URL}/mascotas/${id}`);

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
-import Select from "./Select";
 import {useEffect, useState} from 'react';
+import Select from "./Select";
 import axios from "axios";
 
 const URL = "http://localhost:3100/mascotas";
@@ -13,7 +13,7 @@ const emptyForm = {
 
 const CruForm = ({ typeData, data}) => {
     
-    const [cruForm, setCruForm] = useState(emptyForm);
+    const [cruForm, setCruForm] = useState(data || emptyForm);
     const navigate = useNavigate();
     const { id, nombre, tipo } = cruForm;
 
@@ -59,7 +59,7 @@ const CruForm = ({ typeData, data}) => {
         if(data){
            setCruForm(data); 
         }
-    }, data);
+    }, [data]);
 
     return (
         <>
