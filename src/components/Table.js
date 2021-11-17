@@ -1,11 +1,10 @@
 import React from 'react';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import Row from './Row';
 
 const Table = ({ data, reload }) => {
     const URL = "http://localhost:3100/mascotas";
-    const navigate = useNavigate();
+    
     const remove = async (id) => {
         try {
             await axios.delete(`${URL}/${id}`);
