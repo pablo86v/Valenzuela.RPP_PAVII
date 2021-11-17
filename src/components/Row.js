@@ -1,16 +1,22 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+import { useNavigate } from 'react-router-dom';
 
-const Row = props => {
+const Row = ({data, remove}) => {
+    const mascota = data;
+    const navigate = useNavigate();
+
     return (
-        <div>
-            
-        </div>
+        <tr>
+            <th scope="row">{mascota.id}</th>
+            <td>{mascota.nombre}</td>
+            <td>{mascota.tipo}</td>
+            <td>
+                <button className="btn" onClick={() => navigate(`detail/${mascota.id}`)}><i className="bi bi-info-circle"></i></button>
+                <button className="btn" onClick={() => navigate(`edit/${mascota.id}`)}><i className="bi bi-pencil"></i></button>
+                <button className="btn" onClick={() => remove(mascota.id)}><i className="bi bi-trash"></i></button>
+            </td>
+        </tr>
     );
-};
-
-Row.propTypes = {
-    
 };
 
 export default Row;

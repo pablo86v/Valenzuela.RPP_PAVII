@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
-const URL = "http://localhost:3100/mascotas";
+import Row from './Row';
 
 const Table = ({ data, reload }) => {
+    const URL = "http://localhost:3100/mascotas";
     const navigate = useNavigate();
     const remove = async (id) => {
         try {
@@ -31,16 +31,7 @@ const Table = ({ data, reload }) => {
                 <tbody>
                     {
                         data.length !== 0 && (data.map(mascota => {
-                            return <tr key={mascota.id}>
-                                <th scope="row">{mascota.id}</th>
-                                <td>{mascota.nombre}</td>
-                                <td>{mascota.tipo}</td>
-                                <td>
-                                    <button className="btn"><i className="bi bi-info-circle"></i></button>
-                                    <button className="btn"><i className="bi bi-pencil"></i></button>
-                                    <button className="btn" onClick={() => remove(mascota.id)}><i className="bi bi-trash"></i></button>
-                                </td>
-                            </tr>
+                            return <Row key={mascota.id} data={mascota} remove={remove}/>
                         }))
                     }
                 </tbody>

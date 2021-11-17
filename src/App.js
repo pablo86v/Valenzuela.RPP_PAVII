@@ -13,6 +13,7 @@ function App() {
           <Route path="/" element={<HomePage/>}/>
           <Route path="/detail/:id" element={<DetailPage/>}/>
           <Route path="/new" element={<CruFormPage/>}/>
+          <Route path="/edit/:id" element={<CruFormPage/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </BrowserRouter>

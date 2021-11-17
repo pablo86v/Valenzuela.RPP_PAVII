@@ -1,24 +1,19 @@
 {
-    "tipos": [
-        {
-            "id": 1,
-            "desc": "Perro"
-        },
-        {
-            "id": 2,
-            "desc": "Gato"
-        }
-    ],
-    "mascotas": [
-        {
-            "id": 1,
-            "nombre": "Coco",
-            "tipo": "Perro"
-        },
-        {
-            "id": 2,
-            "nombre": "Newton",
-            "tipo": "Gato"
-        }
-    ]
+  "tipos": [
+    {
+      "id": 1,
+      "desc": "Perro"
+    },
+    {
+      "id": 2,
+      "desc": "Gato"
+    }
+  ],
+  "mascotas": [
+    {
+      "id": 1,
+      "nombre": "Coco",
+      "tipo": "Perro"
+    }
+  ]
 }
