@@ -1,16 +1,23 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-const Select = props => {
+const Select = ({ data, onChange, value }) => {
+    const handlerChange = (e) => {
+        onChange(e);
+    }
+
     return (
-        <div>
-            
-        </div>
+        <>
+        <label htmlFor="tipo" className="form-label">Tipo</label>
+        <select className="form-control" name="tipo" value={value} onChange={handlerChange}>
+            {
+                data.length !== 0 && (data.map(tipoMascota => {
+                    return <option key={tipoMascota.id}>{tipoMascota.desc}</option>
+                }))
+            }
+        </select>
+        </>
     );
 };
 
-Select.propTypes = {
-    
-};
 
 export default Select;

@@ -3,6 +3,7 @@ import HomePage from './pages/HomePage';
 import ErrorPage from './pages/ErrorPage';
 import DetailPage from './pages/DetailPage';
 import './App.css';
+import CruFormPage from './pages/CruFormPage';
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage/>}/>
           <Route path="/detail/:id" element={<DetailPage/>}/>
+          <Route path="/new" element={<CruFormPage/>}/>
           <Route path="*" element={<ErrorPage/>}/>
         </Routes>
       </BrowserRouter>
