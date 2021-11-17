@@ -1,13 +1,18 @@
 import React from 'react';
 import axios from "axios";
 import Row from './Row';
+import { useEffect, useState } from 'react';
+import Spinner from './Spinner';
 
 const Table = ({ data, reload }) => {
     const URL = "http://localhost:3100/mascotas";
-    
+    const [showSpinner, setShowSpinner] = useState(false);
+
     const remove = async (id) => {
         try {
+            setShowSpinner(true);
             await axios.delete(`${URL}/${id}`);
+            setShowSpinner(false);
             reload();
         } catch (err) {
             console.log({ err });
@@ -17,7 +22,6 @@ const Table = ({ data, reload }) => {
     return (
         <>
             <h2 className="title is-4">Mascotas</h2>
-
             <table className="table table-success table-striped">
                 <thead>
                     <tr>
@@ -35,6 +39,7 @@ const Table = ({ data, reload }) => {
                     }
                 </tbody>
             </table>
+            <Spinner visible={showSpinner}/>
         </>
     );
 };

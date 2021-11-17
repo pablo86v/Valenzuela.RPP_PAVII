@@ -21,19 +21,18 @@ const DetailPage = () => {
 
     useEffect(() => {
         getMascota(params.id);
-  
     }, []);
 
-    return ( 
+    return (
         <>
-            <Header />
+            <Header/>
             <div className="container">
                 <Detail data={mascota} />
                 <Link to="/">Volver</Link>
-                <Spinner visible={showSpinner}/>
             </div>
-            </>
-            );
+            <Spinner visible={showSpinner} />
+        </>
+    );
 }
 
 export default DetailPage;

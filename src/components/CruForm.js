@@ -1,5 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
 import {useEffect, useState} from 'react';
+import {Link, useNavigate} from "react-router-dom";
 import Select from "./Select";
 import axios from "axios";
 
@@ -28,7 +28,7 @@ const CruForm = ({ typeData, data}) => {
     const submit = (event) => {
         event.preventDefault();
         
-        if(data){
+        if(id){
             updateItem(cruForm);
         }else{
             addItem(cruForm);

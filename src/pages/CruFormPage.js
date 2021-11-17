@@ -1,5 +1,5 @@
 import CruForm from "../components/CruForm";
-import {useEffect, useState} from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
@@ -18,9 +18,9 @@ const CruFormPage = () => {
         setShowSpinner(false);
     }
 
-    useEffect(()=>{
+    useEffect(() => {
         const getTiposMascota = async (url) => {
-            const {data} = await axios.get(url);
+            const { data } = await axios.get(url);
             data.forEach(t => {
                 setTiposMascota(tiposMascota => [...tiposMascota, t])
             });
@@ -28,18 +28,17 @@ const CruFormPage = () => {
 
         getTiposMascota(`${URL}/tipos`);
 
-        if(params.id){
+        if (params.id) {
             setShowSpinner(true);
             getMascota(params.id);
         }
 
     }, []);
-    
 
     return (
         <div className="container">
             <CruForm typeData={tiposMascota} data={mascotaModificada} />
-            <Spinner visible={showSpinner}/>
+            <Spinner visible={showSpinner} />
         </div>
     );
 }

@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import axios from "axios";
 import Spinner from "../components/Spinner";
 import { useNavigate } from 'react-router-dom';
+import Navigator from "../components/Navigator";
 
 
 const HomePage = () => {
@@ -26,6 +27,7 @@ const HomePage = () => {
         <>
             <Header/>
             <div className="container">
+                <Navigator/>
                 <button className="btn btn-success m-3" onClick={() => navigate("new")}>Agregar mascota</button>
                 <Table data={mascotas} reload={getMascotas} />
             </div>
