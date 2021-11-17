@@ -1,12 +1,20 @@
 import CruForm from "../components/CruForm";
 import {useEffect, useState} from 'react';
 import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const URL = "http://localhost:3100";
 
 function CruFormPage() {
-
+    const params = useParams();
     const [tiposMascota, setTiposMascota] = useState([]);
+    const [mascotaModificada, setMascotaModificada] = useState(null);
+
+    const getMascota = async (id) => {
+        const { data } = await axios.get(`${URL}/mascotas/${id}`);
+        console.log(data);
+        setMascotaModificada(data);
+    }
 
     useEffect(()=>{
         const getTiposMascota = async (url) => {
@@ -17,12 +25,17 @@ function CruFormPage() {
         }
 
         getTiposMascota(`${URL}/tipos`);
+
+        if(params.id){
+            getMascota(params.id);
+        }
+
     }, []);
     
 
     return (
         <div className="container">
-            <CruForm data={tiposMascota}/>
+            <CruForm typeData={tiposMascota} data={mascotaModificada} />
         </div>
     );
 }

@@ -11,9 +11,9 @@ const initialForm = {
     tipo: ""
 }
 
-const CruForm = ({ data }) => {
+const CruForm = ({ typeData, data}) => {
 
-    const [cruForm, setCruForm] = useState(initialForm);
+    const [cruForm, setCruForm] = useState(data || initialForm);
     const navigate = useNavigate();
     const { id, nombre, tipo } = cruForm;
 
@@ -40,6 +40,12 @@ const CruForm = ({ data }) => {
         }
     }
 
+    // useEffect(() =>{
+    //     if(data){
+    //        setCruForm(data); 
+    //     }
+    // }, []);
+
     return (
         <>
             <h2 className="mt-5">Alta de mascota</h2>
@@ -50,7 +56,7 @@ const CruForm = ({ data }) => {
                     <input type="text" className="form-control" id="nombre" name="nombre" value={nombre} onChange={onChangeHandler} />
                 </div>
                 <div className="mb-3">
-                    <Select onChange={onChangeHandler} data={data}/>
+                    <Select onChange={onChangeHandler} data={typeData}/>
                 </div>
 
                 <button type="submit" className="btn btn-primary me-3">Aceptar</button>
