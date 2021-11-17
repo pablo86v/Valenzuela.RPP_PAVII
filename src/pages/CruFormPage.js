@@ -12,7 +12,6 @@ function CruFormPage() {
 
     const getMascota = async (id) => {
         const { data } = await axios.get(`${URL}/mascotas/${id}`);
-        console.log(data);
         setMascotaModificada(data);
     }
 
