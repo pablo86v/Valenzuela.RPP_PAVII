@@ -1,16 +1,17 @@
-import { Link } from "react-router-dom";
+import PathButton from "./PathButton";
 
-const Navigator = () => {
+const Navigator = ({typeData}) => {
     return (
         <>
             <nav className="navbar navbar-light bg-light m-3">
                 <form className="form-inline">
-                    {/* <Link className="btn btn-sm btn-outline-secondary m-2" to={`detail-grid/${mascota.id}`}>Perro</Link> */}
-                    <Link className="btn btn-sm btn-outline-secondary m-2" to={`detail-grid/Perro`}>Perro</Link>
-                    <Link className="btn btn-sm btn-outline-secondary m-2" to={`detail-grid/Gato`}>Gato</Link>
+                    {
+                        typeData.length !== 0 && (typeData.map(t => {
+                           return  <PathButton key={t.id} type={t}/>
+                        }))
+                    }
                 </form>
             </nav>
-
         </>
     );
 }

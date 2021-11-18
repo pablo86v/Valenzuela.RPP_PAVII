@@ -18,14 +18,14 @@ const CruFormPage = () => {
         setShowSpinner(false);
     }
 
-    useEffect(() => {
-        const getTiposMascota = async (url) => {
-            const { data } = await axios.get(url);
-            data.forEach(t => {
-                setTiposMascota(tiposMascota => [...tiposMascota, t])
-            });
-        }
+    const getTiposMascota = async (url) => {
+        const { data } = await axios.get(url);
+        data.forEach(t => {
+            setTiposMascota(tiposMascota => [...tiposMascota, t])
+        });
+    }
 
+    useEffect(() => {
         getTiposMascota(`${URL}/tipos`);
 
         if (params.id) {

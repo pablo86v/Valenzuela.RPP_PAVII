@@ -10,6 +10,7 @@ import Navigator from "../components/Navigator";
 const HomePage = () => {
     const URL = "http://localhost:3100";
     const [mascotas, setMascotas] = useState([]);
+    const [tiposMascota, setTiposMascota] = useState([]);
     const [showSpinner, setShowSpinner] = useState(true);
     const navigate = useNavigate();
 
@@ -19,15 +20,22 @@ const HomePage = () => {
         setShowSpinner(false);
     }
 
+    const getTiposMascota = async (url) => {
+        const { data } = await axios.get(url);
+        setTiposMascota(data);
+    }
+
     useEffect(() => {
         getMascotas();
+        getTiposMascota(`${URL}/tipos`);
+
     }, []);
 
     return (
         <>
             <Header/>
             <div className="container">
-                <Navigator/>
+                <Navigator typeData={tiposMascota}/>
                 <button className="btn btn-success m-3" onClick={() => navigate("new")}>Agregar mascota</button>
                 <Table data={mascotas} reload={getMascotas} />
             </div>

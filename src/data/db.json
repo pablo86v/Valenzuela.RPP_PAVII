@@ -7,6 +7,10 @@
     {
       "id": 2,
       "desc": "Gato"
+    },
+    {
+      "id": 3,
+      "desc": "Reptil"
     }
   ],
   "mascotas": [
@@ -21,9 +25,14 @@
       "id": 3
     },
     {
-      "nombre": "Coco",
-      "tipo": "Perro",
-      "id": 4
+      "nombre": "Juancho",
+      "tipo": "Reptil",
+      "id": 5
+    },
+    {
+      "nombre": "Patas",
+      "tipo": "Gato",
+      "id": 6
     }
   ]
 }
