@@ -83,7 +83,7 @@ const CruForm = ({ typeData, data }) => {
                 </div>
                 <div className="mb-3">
                     <input type="checkbox" id="vacunado" name="vacunado" checked={vacunado} onChange={onChangeHandler} />
-                    <label className="checkbox-inline m-3" aria-describedby="vacunado" for="vacunado" >Vacunado?</label>
+                    <label className="checkbox-inline m-3" aria-describedby="vacunado" htmlFor="vacunado" >Vacunado?</label>
                 </div>
                 <div className="mb-3">
                     <Select onChange={onChangeHandler} data={typeData} value={tipo} />

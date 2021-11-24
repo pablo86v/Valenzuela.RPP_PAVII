@@ -1,6 +1,6 @@
 const Detail = ({ data }) => {
     return (
-        <>
+        <> 
             <div className="card m-3 p-0" style={{ width: "18rem" }}>
                 <div className="card-header">
                     <h5 className="card-title">Mascota</h5>
@@ -11,7 +11,7 @@ const Detail = ({ data }) => {
                     <p className="card-text"><b>Edad:</b> {data.edad}</p>
                     <p className="card-text"><b>Vacunado:</b> {data.vacunado ? "Si" : "No"}</p>
                     <p className="card-text"><b>Observaciones:</b></p>
-                    <textarea className="form-control" aria-label="Observaciones">{data.observaciones}</textarea>
+                    <textarea readOnly className="form-control" defaultValue={data.observaciones} ></textarea>
                 </div>
             </div>
         </>

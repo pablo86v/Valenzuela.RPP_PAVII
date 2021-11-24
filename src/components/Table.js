@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from "axios";
 import Row from './Row';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Spinner from './Spinner';
 
 const Table = ({ data, reload }) => {
