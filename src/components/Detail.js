@@ -8,6 +8,10 @@ const Detail = ({ data }) => {
                 <div className="card-body">
                     <p className="card-text"><b>Nombre:</b> {data.nombre}</p>
                     <p className="card-text"><b>Tipo:</b> {data.tipo}</p>
+                    <p className="card-text"><b>Edad:</b> {data.edad}</p>
+                    <p className="card-text"><b>Vacunado:</b> {data.vacunado ? "Si" : "No"}</p>
+                    <p className="card-text"><b>Observaciones:</b></p>
+                    <textarea className="form-control" aria-label="Observaciones">{data.observaciones}</textarea>
                 </div>
             </div>
         </>

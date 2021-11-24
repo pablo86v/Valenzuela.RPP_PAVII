@@ -28,6 +28,8 @@ const Table = ({ data, reload }) => {
                         <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Tipo</th>
+                        <th scope="col">Edad</th>
+                        <th scope="col">Vacunado</th>
                         <th scope="col">Opciones</th>
                     </tr>
                 </thead>
@@ -45,3 +47,5 @@ const Table = ({ data, reload }) => {
 };
 
 export default Table;
+
+

@@ -11,28 +11,48 @@
     {
       "id": 3,
       "desc": "Reptil"
+    },
+    {
+      "id": 4,
+      "desc": "Pez"
+    },
+    {
+      "id": 5,
+      "desc": "Roedor"
     }
   ],
   "mascotas": [
     {
-      "id": 2,
-      "nombre": "Newton",
-      "tipo": "Gato"
-    },
-    {
-      "nombre": "Leonera",
+      "id": 1,
+      "nombre": "Bobby",
+      "edad": 9,
       "tipo": "Perro",
-      "id": 3
+      "vacunado": false,
+      "observaciones": "Bobby supre de depresión crónica y adicción a las drogas"
     },
     {
-      "nombre": "Juancho",
+      "id": 2,
+      "nombre": "Fido",
+      "edad": 3,
+      "tipo": "Roedor",
+      "vacunado": true,
+      "observaciones": "Cuidado que muerde"
+    },
+    {
+      "id": 4,
+      "nombre": "Colita",
+      "edad": 6,
+      "tipo": "Perro",
+      "vacunado": true,
+      "observaciones": "Mea por todos lados"
+    },
+    {
+      "nombre": "Lassie",
+      "edad": "30",
+      "vacunado": false,
       "tipo": "Reptil",
+      "observaciones": "No soy un perro Karen",
       "id": 5
-    },
-    {
-      "nombre": "Patas",
-      "tipo": "Gato",
-      "id": 6
     }
   ]
 }
