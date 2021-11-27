@@ -5,13 +5,14 @@ import { useState } from 'react';
 import Spinner from './Spinner';
 
 const Table = ({ data, reload }) => {
-    const URL = "http://localhost:3100/mascotas";
+    const URL = "http://localhost:3100/api/mascotas";
     const [showSpinner, setShowSpinner] = useState(false);
-
+    const headers = {headers : {authorization : `Bearer ${localStorage.getItem("token")}`}};
+    
     const remove = async (id) => {
         try {
             setShowSpinner(true);
-            await axios.delete(`${URL}/${id}`);
+            await axios.delete(`${URL}/${id}`, headers);
             setShowSpinner(false);
             reload();
         } catch (err) {

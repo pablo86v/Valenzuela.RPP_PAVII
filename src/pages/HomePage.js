@@ -13,21 +13,27 @@ const HomePage = () => {
     const [tiposMascota, setTiposMascota] = useState([]);
     const [showSpinner, setShowSpinner] = useState(true);
     const navigate = useNavigate();
+    const headers = {headers : {authorization : `Bearer ${localStorage.getItem("token")}`}};
 
     const getMascotas = async () => {
-        const { data } = await axios.get(`${URL}/mascotas`);
+        const { data } = await axios.get(`${URL}/api/mascotas`, headers );
         setMascotas(data);
         setShowSpinner(false);
     }
 
     const getTiposMascota = async (url) => {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(url, headers);
         setTiposMascota(data);
     }
 
     useEffect(() => {
+
+        if(!localStorage.getItem("token")){
+            navigate("/login");
+        }
+
         getMascotas();
-        getTiposMascota(`${URL}/tipos`);
+        getTiposMascota(`${URL}/api/tipos`);
 
     }, []);
 

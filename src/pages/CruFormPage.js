@@ -1,7 +1,7 @@
 import CruForm from "../components/CruForm";
 import { useEffect, useState } from 'react';
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 
 const URL = "http://localhost:3100";
@@ -11,22 +11,28 @@ const CruFormPage = () => {
     const [tiposMascota, setTiposMascota] = useState([]);
     const [mascotaModificada, setMascotaModificada] = useState({});
     const [showSpinner, setShowSpinner] = useState(false);
+    const navigate = useNavigate();
+    const headers = {headers : {authorization : `Bearer ${localStorage.getItem("token")}`}};
 
     const getMascota = async (id) => {
-        const { data } = await axios.get(`${URL}/mascotas/${id}`);
+        const { data } = await axios.get(`${URL}/api/mascotas/${id}`, headers);
         setMascotaModificada(data);
         setShowSpinner(false);
     }
 
     const getTiposMascota = async (url) => {
-        const { data } = await axios.get(url);
+        const { data } = await axios.get(url, headers);
         data.forEach(t => {
             setTiposMascota(tiposMascota => [...tiposMascota, t])
         });
     }
 
     useEffect(() => {
-        getTiposMascota(`${URL}/tipos`);
+        if(!localStorage.getItem("token")){
+            navigate("/login");
+        }
+
+        getTiposMascota(`${URL}/api/tipos`);
 
         if (params.id) {
             setShowSpinner(true);

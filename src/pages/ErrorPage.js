@@ -15,7 +15,7 @@ const ErrorPage = () => {
                                 Ocurrió un error, página no encontrada!
                             </div>
                             <div className="error-actions">
-                                <a href="/" className="btn btn-primary btn-lg"><span className="glyphicon glyphicon-home"></span>
+                                <a href="/login" className="btn btn-primary btn-lg"><span className="glyphicon glyphicon-home"></span>
                                     Ir al inicio </a>
                             </div>
                         </div>

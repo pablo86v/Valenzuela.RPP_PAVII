@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import { useEffect, useState } from 'react';
 import axios from "axios";
 import Header from "../components/Header";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
 
 const DetailPage = () => {
@@ -12,14 +12,21 @@ const DetailPage = () => {
     const [mascota, setMascota] = useState([]);
     const [showSpinner, setShowSpinner] = useState(true);
     const params = useParams();
+    const navigate = useNavigate();
+    const headers = {headers : {authorization : `Bearer ${localStorage.getItem("token")}`}};
 
     const getMascota = async (id) => {
-        const { data } = await axios.get(`${URL}/mascotas/${id}`);
+        const { data } = await axios.get(`${URL}/api/mascotas/${id}`, headers);
+        console.clear();
+        console.log(data);
         setMascota(data);
         setShowSpinner(false);
     }
 
     useEffect(() => {
+        if(!localStorage.getItem("token")){
+            navigate("/login");
+        }
         getMascota(params.id);
     }, []);
 
