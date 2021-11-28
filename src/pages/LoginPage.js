@@ -1,17 +1,23 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import "../pages/LoginPage.css";
+import Spinner from "../components/Spinner";
 import { API_SECTION, httpPost } from "../data/ApiService";
 
 const LoginPage = () => {
     const [loginForm, setLoginForm] = useState();
+    const [showSpinner, setShowSpinner] = useState(false);
     const navigate = useNavigate();
 
     const submit = async (event) => {
+        setShowSpinner(true);
         event.preventDefault();
         httpPost(API_SECTION.LOGIN, loginForm).then(data => {
-            localStorage.setItem('token', data);
-            setTimeout(() => { navigate("/") }, 1000);
+            localStorage.setItem("token", data);
+            setTimeout(() => { 
+                setShowSpinner(false);
+                navigate("/");
+            }, 3000);
         }).catch(err => {
             alert("Usuario y/o contraseña inválidos");
             console.error(err);
@@ -60,7 +66,7 @@ const LoginPage = () => {
                         </form>
                     </div>
                 </div>
-
+                <Spinner visible={showSpinner}/>
             </div>
         </>
     );
