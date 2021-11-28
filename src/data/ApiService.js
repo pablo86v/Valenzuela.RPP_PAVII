@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const API_BASE_URL = "http://localhost:3100";
-const headers = { headers: { authorization: `Bearer ${localStorage.getItem("token")}` } };
+const headers = { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } };
 
 export const API_SECTION = {
     MASCOTAS: "api/mascotas",

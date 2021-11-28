@@ -44,11 +44,11 @@ const SignUpPage = () => {
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password" className="form-label">Contraseña</label>
-                        <input required type="password" className="form-control" id="password" name="password" onChange={onChangeHandler} minlength="6" />
+                        <input required type="password" className="form-control" id="password" name="password" onChange={onChangeHandler} minLength="6" />
                     </div>
                     <div className="mb-3">
                         <label htmlFor="password2" className="form-label">Repita la contraseña</label>
-                        <input required type="password" className="form-control" id="password2" name="password2" onChange={onChangeHandler} minlength="6" />
+                        <input required type="password" className="form-control" id="password2" name="password2" onChange={onChangeHandler} minLength="6" />
                     </div>
                     <button type="submit" className="btn btn-primary me-3">Aceptar</button>
                     <Link to="/login">Cancelar</Link>

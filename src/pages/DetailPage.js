@@ -4,7 +4,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
 import Detail from "../components/Detail";
 import Spinner from "../components/Spinner";
-import { API_SECTION, httpGet, httpGetOne} from "../data/ApiService";
+import { API_SECTION, httpGetOne} from "../data/ApiService";
 
 const DetailPage = () => {
     const [mascota, setMascota] = useState([]);
