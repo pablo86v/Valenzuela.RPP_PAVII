@@ -1,25 +1,22 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from "react-router-dom";
 import Select from "./Select";
-import axios from "axios";
+import { API_SECTION, httpPost, httpPut } from '../data/ApiService';
 
-const URL = "http://localhost:3100/api/mascotas";
+const emptyForm = {
+    id: null,
+    nombre: "",
+    edad: "",
+    vacunado: "",
+    tipo: "",
+    observaciones: ""
+}
 
 const CruForm = ({ typeData, data }) => {
-
-    const emptyForm = {
-        id: null,
-        nombre: "",
-        edad: "",
-        vacunado: "",
-        tipo: "",
-        observaciones: ""
-    }
 
     const [cruForm, setCruForm] = useState(emptyForm);
     const navigate = useNavigate();
     const { id, nombre, edad, vacunado, tipo, observaciones } = cruForm;
-    const headers = { headers: { authorization: `Bearer ${localStorage.getItem("token")}` } };
 
     const onChangeHandler = ({ target }) => {
         let { name, value, checked } = target;
@@ -44,23 +41,23 @@ const CruForm = ({ typeData, data }) => {
     }
 
     const addItem = async (mascota) => {
-        try {
-            console.log(mascota);
-            await axios.post(URL, mascota, headers);
-            navigate("/");
-        } catch (err) {
-            console.log({ err });
-        }
+        if(!mascota.vacunado) mascota.vacunado = false;
+        httpPost(API_SECTION.MASCOTAS, mascota).then(data => {
+            localStorage.setItem('token', data);
+            setTimeout(() => { navigate("/") }, 1000);
+        }).catch(err => {
+            alert("No se pudo guardar la información");
+            console.error(err);
+        });
     }
 
     const updateItem = async (mascota) => {
-        try {
-            console.log(mascota)
-            await axios.put(`${URL}/${mascota.id}`, mascota, headers);
-            navigate("/");
-        } catch (err) {
-            console.log({ err });
-        }
+        httpPut(API_SECTION.MASCOTAS, mascota.id, mascota).then(data => {
+            setTimeout(() => { navigate("/") }, 1000);
+        }).catch(err => {
+            alert("No se pudo actualizar la información");
+            console.error(err);
+        });
     }
 
     useEffect(() => {

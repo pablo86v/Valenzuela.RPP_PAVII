@@ -1,5 +1,6 @@
-import PathButton from "./PathButton";
 import { useNavigate } from 'react-router-dom';
+import PathButton from "./PathButton";
+
 
 const Navigator = ({ typeData }) => {
     const navigate = useNavigate();

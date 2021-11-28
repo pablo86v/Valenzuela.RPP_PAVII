@@ -1,26 +1,22 @@
-import Detail from "../components/Detail";
-import { useParams } from "react-router-dom";
+
 import { useEffect, useState } from 'react';
-import axios from "axios";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Header from "../components/Header";
-import { Link, useNavigate } from "react-router-dom";
+import Detail from "../components/Detail";
 import Spinner from "../components/Spinner";
+import { API_SECTION, httpGet, httpGetOne} from "../data/ApiService";
 
 const DetailPage = () => {
-
-    const URL = "http://localhost:3100";
     const [mascota, setMascota] = useState([]);
     const [showSpinner, setShowSpinner] = useState(true);
     const params = useParams();
     const navigate = useNavigate();
-    const headers = {headers : {authorization : `Bearer ${localStorage.getItem("token")}`}};
 
-    const getMascota = async (id) => {
-        const { data } = await axios.get(`${URL}/api/mascotas/${id}`, headers);
-        console.clear();
-        console.log(data);
-        setMascota(data);
-        setShowSpinner(false);
+    const getMascota = (id) => {
+        httpGetOne(API_SECTION.MASCOTAS, id).then(data => {
+            setMascota(data);
+            setShowSpinner(false);
+        })
     }
 
     useEffect(() => {

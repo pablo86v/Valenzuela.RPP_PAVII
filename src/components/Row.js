@@ -1,16 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-const Row = ({data, remove}) => {
+const Row = ({ data, remove }) => {
     const mascota = data;
     const navigate = useNavigate();
 
     return (
         <tr>
-            <th scope="row">{mascota.id}</th>
             <td>{mascota.nombre}</td>
             <td>{mascota.tipo}</td>
-            <td>{mascota.edad}</td>  
+            <td>{mascota.edad}</td>
             <td>{mascota.vacunado ? "Si" : "No"}</td>
             <td>
                 <button className="btn" onClick={() => navigate(`detail/${mascota.id}`)}><i className="bi bi-info-circle"></i></button>

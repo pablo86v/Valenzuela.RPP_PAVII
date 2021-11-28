@@ -1,6 +1,6 @@
 const Detail = ({ data }) => {
     return (
-        <> 
+        <>
             <div className="card m-3 p-0" style={{ width: "18rem" }}>
                 <div className="card-header">
                     <h5 className="card-title">Mascota</h5>

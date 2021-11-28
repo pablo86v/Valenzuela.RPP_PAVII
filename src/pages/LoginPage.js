@@ -1,25 +1,21 @@
-import "../pages/LoginPage.css";
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
-import { useEffect, useState } from 'react';
-import axios from "axios";
+import "../pages/LoginPage.css";
+import { API_SECTION, httpPost } from "../data/ApiService";
 
 const LoginPage = () => {
     const [loginForm, setLoginForm] = useState();
     const navigate = useNavigate();
-    const URL = "http://localhost:3100";
-    const headers = {headers : {authorization : `Bearer ${localStorage.getItem("token")}`}};
 
     const submit = async (event) => {
         event.preventDefault();
-        console.log(loginForm);
-        try {
-            let {data} = await axios.post(`${URL}/api/login`, loginForm, headers);
+        httpPost(API_SECTION.LOGIN, loginForm).then(data => {
             localStorage.setItem('token', data);
             setTimeout(() => { navigate("/") }, 1000);
-        } catch (error) {
+        }).catch(err => {
             alert("Usuario y/o contraseña inválidos");
-        }
-      
+            console.error(err);
+        });
     }
 
     const onChangeHandler = ({ target }) => {
@@ -32,22 +28,39 @@ const LoginPage = () => {
 
     return (
         <>
-            <div className="container">
-                <div className="wrapper fadeInDown">
-                    <div id="formContent">
-
-                        <form className="mt-3" onSubmit={submit}>
-                            <input type="text" id="userName" name="userName" className="form-control" placeholder="Username" onChange={onChangeHandler}/>
-                            <input type="password" id="password" name="password" className="form-control" placeholder="Password" onChange={onChangeHandler}/>
-                            <input type="submit" className="" value="Iniciar sesión" />
+            <div className="container" align="center">
+                <div className="row text-center login-page">
+                    <div className="col-md-12 login-form">
+                        <form onSubmit={submit}>
+                            <div className="row">
+                                <div className="col-md-12 login-form-header">
+                                    <p className="login-form-font-header"><span>Inicio de sesión</span></p>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12 login-from-row">
+                                    <input name="userName" id="userName" type="text" placeholder="Usuario" required onChange={onChangeHandler} />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12 login-from-row">
+                                    <input name="password" type="password" placeholder="Contraseña" required onChange={onChangeHandler} />
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12 login-from-row">
+                                    <button className="btn btn-success" type="submit">Entrar</button>
+                                </div>
+                            </div>
+                            <div className="row">
+                                <div className="col-md-12 login-from-row">
+                                    <a href="/signup" className="btn btn-link" >Registrar usuario</a>
+                                </div>
+                            </div>
                         </form>
-
-                        <div id="formFooter">
-                            <a className="underlineHover" href="#">Olvidó su contraseña?</a>
-                        </div>
-
                     </div>
                 </div>
+
             </div>
         </>
     );

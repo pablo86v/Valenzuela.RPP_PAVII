@@ -1,10 +1,8 @@
-import CruForm from "../components/CruForm";
 import { useEffect, useState } from 'react';
-import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import CruForm from "../components/CruForm";
 import Spinner from "../components/Spinner";
-
-const URL = "http://localhost:3100";
+import { API_SECTION, httpGet, httpGetOne} from "../data/ApiService";
 
 const CruFormPage = () => {
     const params = useParams();
@@ -12,19 +10,18 @@ const CruFormPage = () => {
     const [mascotaModificada, setMascotaModificada] = useState({});
     const [showSpinner, setShowSpinner] = useState(false);
     const navigate = useNavigate();
-    const headers = {headers : {authorization : `Bearer ${localStorage.getItem("token")}`}};
 
-    const getMascota = async (id) => {
-        const { data } = await axios.get(`${URL}/api/mascotas/${id}`, headers);
-        setMascotaModificada(data);
-        setShowSpinner(false);
+    const getMascota =  (id) => {
+        httpGetOne(API_SECTION.MASCOTAS, id).then(data => {
+            setMascotaModificada(data);
+            setShowSpinner(false);
+        })
     }
 
-    const getTiposMascota = async (url) => {
-        const { data } = await axios.get(url, headers);
-        data.forEach(t => {
-            setTiposMascota(tiposMascota => [...tiposMascota, t])
-        });
+    const getTiposMascota = () => {
+        httpGet(API_SECTION.TIPOS).then(data => {
+            setTiposMascota(data);
+        })
     }
 
     useEffect(() => {
@@ -32,13 +29,12 @@ const CruFormPage = () => {
             navigate("/login");
         }
 
-        getTiposMascota(`${URL}/api/tipos`);
+        getTiposMascota();
 
         if (params.id) {
             setShowSpinner(true);
             getMascota(params.id);
         }
-
     }, []);
 
     return (

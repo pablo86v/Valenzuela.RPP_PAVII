@@ -3,28 +3,22 @@ import { useParams, Link, useNavigate } from "react-router-dom";
 import Detail from "../components/Detail";
 import Header from "../components/Header";
 import Spinner from "../components/Spinner";
-import axios from "axios";
+import { API_SECTION, httpGet} from "../data/ApiService";
 
 const DetailGridPage = () => {
-
-    const URL = "http://localhost:3100";
     const [mascotas, setMascotas] = useState([]);
-    const navigate = useNavigate();
     const [showSpinner, setShowSpinner] = useState(true);
     const params = useParams();
-    const headers = {headers : {authorization : `Bearer ${localStorage.getItem("token")}`}};
-
-    const getMascotas = async () => {
-        const { data } = await axios.get(`${URL}/api/mascotas`, headers);
-        setMascotas(data.filter(m => m.tipo == params.type))
-        setShowSpinner(false);
-    }
+    const navigate = useNavigate();
 
     useEffect(() => {
         if(!localStorage.getItem("token")){
             navigate("/login");
         }
-        getMascotas();
+        httpGet(API_SECTION.MASCOTAS).then(data => {
+            setMascotas(data.filter(m => m.tipo === params.type));
+            setShowSpinner(false);
+        })
     }, []);
 
     return (

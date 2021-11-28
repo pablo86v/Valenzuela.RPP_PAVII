@@ -1,23 +1,20 @@
-import React from 'react';
-import axios from "axios";
-import Row from './Row';
 import { useState } from 'react';
+import Row from './Row';
 import Spinner from './Spinner';
+import { API_SECTION, httpDelete } from '../data/ApiService';
 
 const Table = ({ data, reload }) => {
-    const URL = "http://localhost:3100/api/mascotas";
     const [showSpinner, setShowSpinner] = useState(false);
-    const headers = {headers : {authorization : `Bearer ${localStorage.getItem("token")}`}};
-    
+
     const remove = async (id) => {
-        try {
-            setShowSpinner(true);
-            await axios.delete(`${URL}/${id}`, headers);
+        setShowSpinner(true);
+        httpDelete(API_SECTION.MASCOTAS, id).then(() => {
             setShowSpinner(false);
             reload();
-        } catch (err) {
-            console.log({ err });
-        }
+        }).catch(err => {
+            alert("No se pudo eliminar la información");
+            console.error(err);
+        });
     }
 
     return (
@@ -26,7 +23,6 @@ const Table = ({ data, reload }) => {
             <table className="table table-success table-striped">
                 <thead>
                     <tr>
-                        <th scope="col">#</th>
                         <th scope="col">Nombre</th>
                         <th scope="col">Tipo</th>
                         <th scope="col">Edad</th>
@@ -37,12 +33,12 @@ const Table = ({ data, reload }) => {
                 <tbody>
                     {
                         data.length !== 0 && (data.map(mascota => {
-                            return <Row key={mascota.id} data={mascota} remove={remove}/>
+                            return <Row key={mascota.id} data={mascota} remove={remove} />
                         }))
                     }
                 </tbody>
             </table>
-            <Spinner visible={showSpinner}/>
+            <Spinner visible={showSpinner} />
         </>
     );
 };
